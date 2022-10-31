@@ -8,6 +8,6 @@ export interface CurrentUser {
 export interface Auth {
     defaultDriver: string
     driver(driver?: string): any
-    login(creds: Login): boolean | string
+    login(creds: Login): Promise<boolean | string>
     logout(): void
 }

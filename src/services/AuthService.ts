@@ -58,28 +58,30 @@ class AuthService implements Auth {
      * @param creds 
      * @returns 
      */
-    public login(creds: Login) {
-        let user: UserInterface | undefined = UserModel.findById(creds.branchId)
-
-        if (user) {
-            if (user.userName !== creds.username) {
-                return MESSAGES.LOGIN_USERNAME_INCORRECT
+    public login(creds: Login): Promise<boolean | string> {
+        return new Promise((resolve, reject) => {
+            let user: UserInterface | undefined = UserModel.findById(creds.branchId)
+            if (user) {
+                if (user.userName !== creds.username) {
+                    reject(MESSAGES.LOGIN_USERNAME_INCORRECT)
+                }
+                else if (user.password !== creds.password) {
+                    reject(MESSAGES.LOGIN_PASSWORD_INCORRECT)
+                }
+                else {
+                    // save the username, branchId in the storage
+                    this._driver.save("currentUser", {
+                        username: creds.username,
+                        branchId: creds.branchId
+                    })
+                    
+                    resolve(true)
+                }
             }
-            else if (user.password !== creds.password) {
-                return MESSAGES.LOGIN_PASSWORD_INCORRECT
+            else {
+                reject(MESSAGES.LOGIN_BRANCH_ID_INCORRECT)
             }
-
-            // save the username, branchId in the storage
-            this._driver.save("currentUser", {
-                username: creds.username,
-                branchId: creds.branchId
-            })
-            
-            return true
-        }
-        else {
-            return MESSAGES.LOGIN_BRANCH_ID_INCORRECT
-        }
+        })
     }
 
     /**

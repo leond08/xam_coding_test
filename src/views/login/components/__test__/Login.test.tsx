@@ -106,7 +106,7 @@ describe('LoginComponent', () => {
     expect(errorElement).toBeInTheDocument()
   })
 
-  it('should log in user', () => {
+  it('should log in user', async () => {
     let cred = {
       branchId: 10003,
       username: "testuser03",
@@ -114,7 +114,7 @@ describe('LoginComponent', () => {
       loginError: '',
     }
 
-    let response = AuthService.driver('session').login(cred) // initiate login
+    let response = await AuthService.driver('session').login(cred) // initiate login
 
     expect(response).toEqual(true)
 

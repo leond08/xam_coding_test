@@ -48,21 +48,22 @@ const LoginComponent : React.FC = () => {
             password: '',
             loginError: '',
           }}
-          onSubmit={(
+          onSubmit={async (
             values: Login,
             { setSubmitting, setErrors }: FormikHelpers<Login>
           ) => {
-            let response = AuthService.login(values)
-            if (response === true) {
-              setSubmitting(false)
-              history.replace({
-                pathname: "/dashboard"
-              })
-            }
-            else {
+            try {
+              let response = await AuthService.login(values)
+              if (response === true) {
+                setSubmitting(false)
+                history.replace({
+                  pathname: "/dashboard"
+                })
+              }
+            } catch (error) {
               setSubmitting(false)
               setErrors({
-                loginError: `Error: ${response}`
+                loginError: `Error: ${error}`
               })
             }
           }}
