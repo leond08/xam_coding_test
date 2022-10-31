@@ -2,10 +2,10 @@ import React from "react"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 import Grid from "@mui/material/Grid"
-import Button from "@mui/material/Button"
 import { CurrentUser } from "../../../services/types/service"
 import AuthService from "../../../services/AuthService"
 import { useHistory } from "react-router-dom"
+import { RoundedButton } from "../../../components/RoundedButton"
 
 const Header: React.FC = () => {
     let history = useHistory()
@@ -34,12 +34,12 @@ const Header: React.FC = () => {
                     <Box style={{
                         textAlign: "right"
                     }}>
-                        <Button 
+                        <RoundedButton 
                             variant="contained"
                             onClick={handleLogout}
                         >
                             Logout
-                        </Button>
+                        </RoundedButton>
                     </Box>
                 </Grid>
             </Grid>

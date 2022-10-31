@@ -28,6 +28,7 @@ View the app at http://localhost:3000
     .
     ├── public                  # public files
     ├── src
+    │   ├── components          # custom components
     │   ├── context             # Folder for react context                     
     │   ├── data                # User data files
     │   ├── helpers             # Helper files

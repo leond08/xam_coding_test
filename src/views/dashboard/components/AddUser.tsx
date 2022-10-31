@@ -1,13 +1,13 @@
 import React from "react";
-import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import { Form, Formik, FormikHelpers } from 'formik'
 import * as Yup from 'yup'
 import { UserInterface } from "../../../models/types/user";
-import { Stack } from "@mui/material";
+import { Paper, Stack } from "@mui/material";
 import { UserContext } from "../../../context/UserContext";
 import MESSAGES from "../../../helpers/message"
+import { RoundedButton } from "../../../components/RoundedButton";
 
 
 const AddUser: React.FC = () => {
@@ -29,7 +29,10 @@ const AddUser: React.FC = () => {
   }
 
   return (
-      <Box>
+      <Paper 
+        elevation={2} 
+        sx={{ padding: 5, backgroundColor: "#F5F5F5" }}
+      >
         <Formik
           initialValues={{
               branchId: '',
@@ -177,29 +180,27 @@ const AddUser: React.FC = () => {
                       mt: 2
                   }}
               >
-                  <Button
+                  <RoundedButton
                       type="reset"
-                      fullWidth
                       disabled={isSubmitting}
                       color="inherit"
                       variant="contained"
                       >
                       RESET
-                  </Button>
-                  <Button
+                  </RoundedButton>
+                  <RoundedButton
                       disabled={isSubmitting}
                       type="submit"
-                      fullWidth
                       variant="contained"
                       >
                       ADD
-                  </Button>
+                  </RoundedButton>
               </Stack>
             </Box>
           </Form>
         )}
         </Formik>
-      </Box>
+      </Paper>
   )
 }
 

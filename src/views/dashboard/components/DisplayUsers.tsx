@@ -76,4 +76,4 @@ const DisplayUsers: React.FC = () => {
     ) 
 }
 
-export default React.memo(DisplayUsers)
+export default DisplayUsers

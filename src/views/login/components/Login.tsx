@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
@@ -13,6 +12,7 @@ import { Login } from '../types/login'
 import MESSAGES from "../../../helpers/message"
 import AuthService from '../../../services/AuthService'
 import { useHistory } from 'react-router-dom'
+import { RoundedButton } from '../../../components/RoundedButton'
 
 const LoginComponent : React.FC = () => {
   let history = useHistory()
@@ -118,15 +118,15 @@ const LoginComponent : React.FC = () => {
                 error={Boolean(touched.password && errors.password)}
                 helperText={touched.password && errors.password}
               />
-              <Button
+              <RoundedButton
                 type="submit"
                 fullWidth
                 disabled={isSubmitting}
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 2, mb: 2 }}
               >
                 Login
-              </Button>
+              </RoundedButton>
               {Boolean(touched.loginError && errors.loginError) && (
                 <Alert icon={false} severity="error">
                   <FormHelperText error>
